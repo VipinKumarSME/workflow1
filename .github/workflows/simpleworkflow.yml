@@ -1,0 +1,32 @@
+name: Simple Manual Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+
+  DEV:
+    runs-on: ubuntu-latest
+    environment: DEV
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a script
+        run: |
+            echo "I am running on DEV Branch"
+  QA:
+    runs-on: ubuntu-latest
+    environment: QA
+    needs: DEV
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a script
+        run: |
+            echo "I am running on QA Branch"
+  Prod:
+    runs-on: ubuntu-latest
+    environment: Prod
+    needs: QA
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a script
+        run: |
+            echo "I am running on Prod Branch"
