@@ -1,2 +1,2 @@
 # workflow
-deployments to all 3 env
+deployments to all 3 environments
